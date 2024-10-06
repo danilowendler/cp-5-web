@@ -57,6 +57,7 @@ const HeroContainer = styled.section`
   background-image: url(${process.env.PUBLIC_URL}/header_img.png);
   background-size: cover;
   background-position: center center;
+  background-repeat: no-repeat;
   min-height: 60vh;
   display: flex;
   justify-content: flex-start;
@@ -66,6 +67,7 @@ const HeroContainer = styled.section`
   color: #fff;
   overflow-x: hidden;
   font-family: 'Poppins', sans-serif;
+  z-index: 1;
 
   @media (max-width: 1200px) {
     min-height: 50vh;
@@ -73,12 +75,16 @@ const HeroContainer = styled.section`
 
   @media (max-width: 768px) {
     padding: 3rem 3vw;
-    min-height: 40vh;
+    min-height: 50vh;
+    background-size: cover;
+    background-position: top center;
   }
 
   @media (max-width: 480px) {
     padding: 2rem 2vw;
-    min-height: 35vh;
+    min-height: 45vh;
+    background-size: cover;
+    background-position: top center;
   }
 `;
 
@@ -89,16 +95,37 @@ const HeroContent = styled.div`
   max-width: 50%;
   padding: 2rem 0;
   font-family: 'Poppins', sans-serif;
+  z-index: 2; /* Garante que o conteúdo esteja à frente da imagem */
 
   h1 {
     font-weight: 600;
     font-size: 3rem;
     color: white;
+
+    @media (max-width: 768px) {
+      font-size: 2.2rem; /* Diminui o tamanho do título em telas menores */
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.8rem; /* Diminui ainda mais em telas muito pequenas */
+    }
   }
 
   p {
     font-size: 1.2rem;
     color: white;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%; /* Ajusta o conteúdo para ocupar toda a largura da tela */
   }
 `;
 
@@ -111,8 +138,8 @@ const HeroButton = styled.button`
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 200px; /* Largura fixa */
-  max-width: 80%; /* Largura máxima para garantir responsividade */
+  width: 200px;
+  max-width: 80%;
 
   &:hover {
     background-color: #f0f0f0;
@@ -121,13 +148,13 @@ const HeroButton = styled.button`
   @media (max-width: 768px) {
     padding: 0.5rem 1.2rem;
     font-size: 0.9rem;
-    width: 180px; /* Ajustando para dispositivos menores */
+    width: 180px;
   }
 
   @media (max-width: 480px) {
     padding: 0.4rem 1rem;
     font-size: 0.8rem;
-    width: 150px; /* Ainda menor em telas pequenas */
+    width: 150px;
   }
 `;
 
@@ -159,7 +186,7 @@ const Hero = () => {
 
       <HeroContainer>
         <HeroContent>
-          <h1>Encomende aqui a sua comida preferida</h1>
+          <h1>Encomende aqui a sua comida preferida</h1> {/* Certifique-se de que este título esteja dentro do conteúdo */}
           <p>Escolha entre um menu diversificado com uma deliciosa variedade de pratos elaborados com os melhores ingredientes e experiência culinária.</p>
           <HeroButton onClick={(e) => scrollToSection(e, '#menu')}>Pratos em Alta</HeroButton>
 
