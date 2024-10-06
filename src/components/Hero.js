@@ -54,7 +54,7 @@ const NavLinks = styled.div`
 `;
 
 const HeroContainer = styled.section`
-  background-image: url('/header_img.png');
+  background-image: url(${process.env.PUBLIC_URL}/header_img.png);
   background-size: cover;
   background-position: center center;
   min-height: 60vh;
